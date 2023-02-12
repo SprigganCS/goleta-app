@@ -11,7 +11,9 @@ app.use(express.json()); // permite acesso com o formato json
 app.use(express.urlencoded({ extended : false })); // não envia dados em forms
 
 app.use('/', (request, response) => { // rota raiz
-    response.send('Hello World');
+    response.json({
+        success: true
+    })
 });
 
 
