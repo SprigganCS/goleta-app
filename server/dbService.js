@@ -8,12 +8,12 @@ const connection = mysql.createConnection({
     password: process.env.PASSWORD,
     database: process.env.DATABASE,
     port: process.env.DB_PORT
+})
+
+connection.connect((err) =>{
+  if (err){
+    console.log("erro", err.message);
+  }
+  console.log("db " + connection.state); 
 });
 
-
-connection.connect((error) => { //cria a conexão com um parametro para caso dê erro
-    if (error) { //se houver erro
-        console.log(error.message); //imprime a mensagem de erro
-    }
-    console.log('db '+ connection.state); //imprime o estado da conexão
-});
