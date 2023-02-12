@@ -1,4 +1,4 @@
-const mysql = require('mysql'); // mysql driver
+const mysql = require('mysql2'); // mysql driver
 const dotenv = require('dotenv'); // Dotenv para variaveis de ambiente
 dotenv.config(); //permite o acesso as credencias do .env
 
@@ -8,12 +8,12 @@ const connection = mysql.createConnection({
     password: process.env.PASSWORD,
     database: process.env.DATABASE,
     port: process.env.DB_PORT
-})
+});
 
-connection.connect((err) =>{
+connection.connect((err) => {
   if (err){
-    console.log("erro", err.message);
+    console.log(err.message);
   }
-  console.log("db " + connection.state); 
+  console.log('db ' + connection.state); 
 });
 
