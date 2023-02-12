@@ -12,7 +12,7 @@ app.use(express.urlencoded({ extended : false })); // não envia dados em forms
 
 app.use('/', (request, response) => { // rota raiz
     response.send('Hello World');
-    });
+});
 
 
 //create
@@ -26,6 +26,7 @@ app.get('/getAll', (request, response) => {
     response.json({
         success: true
     })
+    console.log("getall")
 
 });
 
@@ -35,4 +36,4 @@ app.get('/getAll', (request, response) => {
 
 
 
-app.listen(process.env.PORT, () =>  console.log(`Server running on port ${process.env.PORT}`));
+app.listen(process.env.PORT || 3000, () =>  console.log(`Server running on port ${process.env.PORT}`));
