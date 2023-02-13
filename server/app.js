@@ -10,10 +10,8 @@ app.use(cors()); // permite o acesso a API de qualquer origem
 app.use(express.json()); // permite acesso com o formato json
 app.use(express.urlencoded({ extended : false })); // não envia dados em forms
 
-app.use('/', (request, response) => { // rota raiz
-    response.json({
-        success: true
-    })
+app.get('/', (request, response) => {
+    response.send("root");
 });
 
 
@@ -25,11 +23,13 @@ app.post('/insert', (request, response) => {
 
 //read
 app.get('/getAll', (request, response) => {
-    response.json({
-        success: true
-    })
-    console.log("getall")
-
+    const db = dbService.getDbServiceInstance();
+    
+    const result = db.getAllData();
+    
+    result
+    .then(data => response.json({data: data}))
+    .catch(err => console.log(err));
 });
 
 //update
