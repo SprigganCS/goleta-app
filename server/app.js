@@ -16,13 +16,12 @@ app.get('/', (request, response) => {
 
 
 //create
-app.post('/insert', (request, response) => {
-
+app.post('/getAll', (request, response) => {
     
 });
 
 //read
-app.get('/getAll', (request, response) => {
+app.get('/Users', (request, response) => {
     const db = dbService.getDbServiceInstance();
     
     const result = db.getAllData();
