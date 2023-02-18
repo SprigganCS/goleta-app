@@ -16,10 +16,10 @@ app.get('/', (request, response) => {
 
 
 //create
-app.post('/getAll', (request, response) => {
+app.post('/Register', (request, response) => {
     const db = dbService.getDbServiceInstance();
     
-    const result = dbService.insertNewPassenger(request.body.name);
+    const result = dbService.insertNewPassenger("André");
 
     result
     .then(data => response.json({success: true})) //data retornado pelo insertNewPassenger e vira um objeto json que diz sucesso
