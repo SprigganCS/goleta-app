@@ -28,7 +28,7 @@ class DbService {
     try{
       const response = await new Promise((resolve, reject) => 
       {
-        const query = "SELECT * FROM passageiros WHERE id = ?;";
+        const query = "SELECT * FROM tbl_passageiros WHERE id = 1;";
 
         connection.query(query, [1],(err, results) => 
         {
