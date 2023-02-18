@@ -48,7 +48,7 @@ class DbService { //criação de uma classe que cria uma instancia do banco de d
   async insertNewPassenger(name){
     try{
 
-      const insertID = await new Promise((resolve, reject) => {
+      const insertId = await new Promise((resolve, reject) => {
 
         const query = "INSERT INTO tbl_passageiros (nome_passageiro, data_cadastro) VALUES (?, ?);"; //interrogações para evitar sql injection
 
