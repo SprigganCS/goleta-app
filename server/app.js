@@ -20,7 +20,7 @@ app.post('/Register', (request, response) => {
     const db = dbService.getDbServiceInstance();
     
     let a = "Andre"
-    const result = dbService.insertNewPassenger(a);
+    const result = db.insertNewPassenger(a);
 
     result
     .then(data => response.json({success: true})) //data retornado pelo insertNewPassenger e vira um objeto json que diz sucesso
