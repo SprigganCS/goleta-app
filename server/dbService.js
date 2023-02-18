@@ -48,13 +48,12 @@ class DbService { //criação de uma classe que cria uma instancia do banco de d
   async insertNewPassenger(name){
     try{
 
+      var date = new Date(); //data atual para pegar o horario e adicionar no BD o momento de cadastro dos passageiros
+      var datetime = date.getFullYear() + "-" + (date.getMonth()+1) + "-" + date.getDate() + " " + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds(); //data e hora atual
+      datetime = datetime.replace(/-/g, '/'); //formata para entrar no BD
       const insertId = await new Promise((resolve, reject) => {
 
         const query = "INSERT INTO tbl_passageiros (nome_passageiro, data_cadastro) VALUES (?, ?);"; //interrogações para evitar sql injection
-
-        var date = new Date(); //data atual para pegar o horario e adicionar no BD o momento de cadastro dos passageiros
-        var datetime = date.getFullYear() + "-" + (date.getMonth()+1) + "-" + date.getDate() + " " + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds(); //data e hora atual
-        datetime = datetime.replace(/-/g, '/'); //formata para entrar no BD
 
         connection.query(query, [name, datetime], (err, result) => {
           if (err) reject(new Error(err.message));
@@ -63,7 +62,7 @@ class DbService { //criação de uma classe que cria uma instancia do banco de d
         });
       });
       console.log(response);
-      return response;
+      //return response;
       
     }catch(error){
       console.log(error);
