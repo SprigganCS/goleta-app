@@ -19,7 +19,8 @@ app.get('/', (request, response) => {
 app.post('/Register', (request, response) => {
     const db = dbService.getDbServiceInstance();
     
-    const result = dbService.insertNewPassenger("André");
+    let a = "Andre"
+    const result = dbService.insertNewPassenger(a);
 
     result
     .then(data => response.json({success: true})) //data retornado pelo insertNewPassenger e vira um objeto json que diz sucesso
