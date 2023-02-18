@@ -22,7 +22,7 @@ app.post('/Register', (request, response) => {
     const result = db.insertNewPassenger(request.body.name);
 
     result
-    .then(data => response.json({data})) //data retornado pelo insertNewPassenger e vira um objeto json que diz sucesso
+    .then(data => response.json({success: true})) //data retornado pelo insertNewPassenger e vira um objeto json que diz sucesso
     .then(err => console.log(err));
 });
 
