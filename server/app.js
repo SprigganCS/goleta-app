@@ -17,14 +17,20 @@ app.get('/', (request, response) => {
 
 //create
 app.post('/getAll', (request, response) => {
+    const db = dbService.getDbServiceInstance();
     
+    const result = dbService.insertNewPassenger(request.body.name);
+
+    result
+    .then(data => response.json({success: true})) //data retornado pelo insertNewPassenger e vira um objeto json que diz sucesso
+    .then(err => console.log(err));
 });
 
 //read
 app.get('/Users', (request, response) => {
     const db = dbService.getDbServiceInstance();
     
-    const result = db.getAllData();
+    const result = db.getAllPassengers();
     
     result
     .then(data => response.json({data: data}))

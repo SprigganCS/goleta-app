@@ -19,12 +19,12 @@ connection.connect((err) => {
 
 });
 
-class DbService {
+class DbService { //criação de uma classe que cria uma instancia do banco de dados
   static getDbServiceInstance() { 
     return instance ? instance : new DbService();
   }
 
-  async getAllData() {
+  async getAllPassengers() {
     try{
       const response = await new Promise((resolve, reject) => 
       {
@@ -44,6 +44,32 @@ class DbService {
       console.log(error);
     }
   }
+
+  async insertNewPassenger(name){
+    try{
+
+      const insertID = await new Promise((resolve, reject) => {
+
+        const query = "INSERT INTO tbl_passageiros (nome_passageiro, data_cadastro) VALUES (?, ?);"; //interrogações para evitar sql injection
+
+        var date = new Date(); //data atual para pegar o horario e adicionar no BD o momento de cadastro dos passageiros
+        var datetime = date.getFullYear() + "-" + (date.getMonth()+1) + "-" + date.getDate() + " " + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds(); //data e hora atual
+        datetime = datetime.replace(/-/g, '/'); //formata para entrar no BD
+
+        connection.query(query, [name, datetime], (err, result) => {
+          if (err) reject(new Error(err.message));
+          resolve(result.insertId); //não entendi kkk
+
+        });
+      });
+      console.log(response);
+      return response;
+      
+    }catch(error){
+      console.log(error);
+    }
+
+  }
 }
 
-module.exports = DbService;
+module.exports = DbService; //exporta a classe
