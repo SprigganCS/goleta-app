@@ -4,11 +4,11 @@ dotenv.config(); //permite o acesso as credencias do .env
 let instance = null;
 
 const connection = mysql.createConnection({
-    host: 'localhost' || process.env.HOST,
-    user: 'root' || process.env.USER,
-    password: '' || process.env.PASSWORD,
-    database: 'goleta' || process.env.DATABASE,
-    port: 3306 || process.env.DB_PORT
+    host: process.env.HOST,
+    user: process.env.USER,
+    password: process.env.PASSWORD,
+    database: process.env.DATABASE,
+    port: process.env.DB_PORT
 });
 
 connection.connect((err) => {
