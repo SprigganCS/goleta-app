@@ -1,10 +1,14 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 
+import Header from './src/Header';
+import Boxes from './src/Boxes';
+
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Message from local enviroment</Text>
+      <Header />
+      <Boxes />
       <StatusBar style="auto" />
     </View>
   );
