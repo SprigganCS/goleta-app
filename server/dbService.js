@@ -69,6 +69,26 @@ class DbService { //criação de uma classe que cria uma instancia do banco de d
     }
 
   }
+
+  async newSchedule(info){
+    try{
+      const insertId = await new Promise((resolve, reject) => {
+        //a partir de info[0] buscar o id do passageiro na tbl_passageiros
+        const query = "INSERT INTO tbl_agendamento (id_passageiro, turno_agendamento, data_agendamento) VALUES (?, ?, ?);";
+
+        connection.query(query, info, (err, result) => {
+          if (err) reject(new Error(err.message));
+          resolve(result.insertId);
+
+        });
+
+      });
+      console.log(response);
+    }
+    catch(error){
+      console.log(error);
+    }
+  }
 }
 
 module.exports = DbService; //exporta a classe

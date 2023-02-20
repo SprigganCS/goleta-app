@@ -26,6 +26,17 @@ app.post('/Register', (request, response) => {
     .then(err => console.log(err));
 });
 
+app.post('/Schedule', (request, response) => {
+    const db = dbService.getDbServiceInstance();
+    
+    info = ["jao", 0];
+    const result = db.newSchedule(info);
+
+    result
+    .then(data => response.json({success: true})) //data retornado pelo insertNewPassenger e vira um objeto json que diz sucesso
+    .then(err => console.log(err));
+});
+
 //read
 app.get('/Users', (request, response) => {
     const db = dbService.getDbServiceInstance();
