@@ -40,8 +40,11 @@ class DbService { //criação de uma classe que cria uma instancia do banco de d
       //console.log(response);
       return response;
     
-      } catch (error) {
+    }catch (error) {
       console.log(error);
+    }
+    finally{
+      connection.release();
     }
   }
 
