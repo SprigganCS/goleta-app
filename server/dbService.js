@@ -43,9 +43,6 @@ class DbService { //criação de uma classe que cria uma instancia do banco de d
     }catch (error) {
       console.log(error);
     }
-    finally{
-      connection.release();
-    }
   }
 
   async insertNewPassenger(name){
