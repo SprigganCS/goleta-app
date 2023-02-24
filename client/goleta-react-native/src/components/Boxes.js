@@ -1,30 +1,46 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+
+
 
 export default function Boxes() {
   return (
     <View style={styles.container}>
         <View style={styles.box}> 
             <View style={styles.inner}>
-                <Text>Menu 1</Text>
+                <TouchableOpacity
+                    onPress={() => console.log('pressed')}>
+                    <Text>Menu 1</Text>
+                </TouchableOpacity>
             </View>
         </View>
 
         <View style={styles.box}> 
             <View style={styles.inner}>
-                <Text>Menu 2</Text>
+                <TouchableOpacity
+                    onPress={() => console.log('pressed')}>
+                    <Text>Menu 2</Text>
+                </TouchableOpacity>
+
+          
             </View>
         </View>
 
         <View style={styles.box}> 
             <View style={styles.inner}>
-                <Text>Menu 3</Text>
+                <TouchableOpacity
+                    onPress={() => console.log('pressed')}>
+                    <Text>Menu 3</Text>
+                </TouchableOpacity>
             </View>
         </View>
 
         <View style={styles.box}> 
             <View style={styles.inner}>
-                <Text>Menu 4</Text>
+                <TouchableOpacity
+                    onPress={() => console.log('pressed')}>
+                    <Text>Menu 4</Text>
+                </TouchableOpacity>
             </View>
         </View>
 
@@ -42,8 +58,9 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap'
   },
   box: {
+    justifyContent: 'center',
     width: '50%',
-    height: '50%',
+    height: '10%', //50% aqui fica mais bonito
     padding: 5
   },
   inner: {
@@ -52,5 +69,6 @@ const styles = StyleSheet.create({
     alignItems: 'center', //horizontal
     justifyContent: 'center', //vertical
     borderRadius: 5
-  }
+  },
+
 });
