@@ -1,15 +1,22 @@
+import { useNavigation } from '@react-navigation/native';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 
+
+//como receber o parametro navigation dado que o pai é "menu.js"?
 
 export default function Boxes() {
+  
+  const navigation = useNavigation();
   return (
     <View style={styles.container}>
         <View style={styles.box}> 
             <View style={styles.inner}>
                 <TouchableOpacity
-                    onPress={() => console.log('pressed')}>
+                    onPress={() => navigation.navigate("Schedule")}>
                     <Text>Menu 1</Text>
                 </TouchableOpacity>
             </View>
@@ -21,8 +28,6 @@ export default function Boxes() {
                     onPress={() => console.log('pressed')}>
                     <Text>Menu 2</Text>
                 </TouchableOpacity>
-
-          
             </View>
         </View>
 

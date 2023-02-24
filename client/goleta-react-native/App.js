@@ -1,18 +1,13 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 
-import Header from './src/components/Header';
-import Boxes from './src/components/Boxes';
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Header />
-      <Boxes />
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+import Routes from './src/components/Routes/Index';
+
+
+const App = ()=>{
+  return <Routes />;
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -22,3 +17,5 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
+
+export default App;
