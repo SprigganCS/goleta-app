@@ -1,5 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { useState } from 'react';
 
 const Schedule =() =>{
     const today = new Date();
@@ -9,19 +10,23 @@ const Schedule =() =>{
 
     var dias = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'];
 
+    const [shouldShow, setshouldShow] = useState(false);
 
     return (
         <View style={styles.container}>
             <View style={styles.box}>
                 <View style={styles.inner}>
-                <Text style={styles.date}>{(dd) +'/'+mm}</Text>
-                    <Text>{dias[day]}</Text>
+                    <TouchableOpacity
+                    hitSlop= {{top: 30, right: 30, left: 30, bottom: 30}}
+                    onPress={() => setshouldShow(!shouldShow)}>
+                        <Text style={styles.date}>{(dd) +'/'+mm}</Text>
+                        <Text>{dias[day]}</Text>
+                    </TouchableOpacity>
                 </View>
             </View>
 
             <View style={styles.box}>
                 <View style={styles.inner}>
-                    
                     <Text style={styles.date}>{(dd+1) +'/'+mm}</Text>
                     <Text>{dias[(day+1)%7]}</Text>
                 </View>
@@ -47,11 +52,34 @@ const Schedule =() =>{
                     <Text>{dias[(day+4)%7]}</Text>
                 </View>
             </View>
+
+            
             
 
+
+            <SafeAreaView>
+               
+                {
+                    shouldShow ? (
+                        <View style = {styles.hiddenContainer}>
+                            <View style={styles.col}>
+                                <Text style={{textAlign:'center'}}>Ida</Text>
+                            </View>
+                            <View style={styles.col}>
+                                <Text style={{textAlign:'center'}}>Volta</Text>
+                            </View>
+                            
+                        </View>
+                            
+                    ) :null
+                }
+                
+            </SafeAreaView>
             
             <StatusBar style="auto" />
         </View>
+
+        
         
     );
 }
@@ -64,10 +92,11 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-evenly',
     backgroundColor: '#fff',
+    flexWrap: 'wrap',
   },
   box: {
-    width: 60,
-    height: 60, //50% aqui fica mais bonito
+    width: "20%",
+    height: 60,
     padding: 5,
   },
   inner: {
@@ -77,6 +106,25 @@ const styles = StyleSheet.create({
     justifyContent: 'center', //vertical
     borderRadius: 5,
   },
+  date: {
+    fontSize: 10,
+  },
+  hideshow:{ 
+    width: '100%',
+    height: '100%',
+  },
+  hiddenContainer:{
+    width: '100%',
+    height: '100%',
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
+  },
+  col:{
+    width: "20%",
+    height: '5%',
+    padding: 5,
+    backgroundColor: '#bbb',
+  }
 });
 
 
