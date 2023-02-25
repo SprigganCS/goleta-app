@@ -7,8 +7,7 @@ const Profile = () =>{
             <Text style={styles.text}>Profile</Text>
             <StatusBar style="auto" />
         </View>
-
-    );
+);
 }
 
 const styles = StyleSheet.create({
@@ -23,6 +22,7 @@ const styles = StyleSheet.create({
         marginTop: 50,
     },
 });
+
 
 
 export default Profile;
