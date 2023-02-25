@@ -1,10 +1,10 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 
-const Schedule =() =>{
+const Profile = () =>{
     return (
         <View style={styles.container}>
-            <Text style={styles.text}>Schedule</Text>
+            <Text style={styles.text}>Profile</Text>
             <StatusBar style="auto" />
         </View>
 
@@ -25,4 +25,4 @@ const styles = StyleSheet.create({
 });
 
 
-export default Schedule;
+export default Profile;
