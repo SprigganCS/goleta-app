@@ -28,6 +28,12 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "0344a03f-77c8-4122-b9f9-226f62ba5acf"
+      }
+    },
+    "owner": "spriggancs"
   }
 }

@@ -98,7 +98,7 @@ const Schedule = () => {
                             <View style={styles.hiddenContainer}>
                                 <View style={styles.lin}>
 
-                                    {/* {getTime(1)} */}
+                                    {getTime(0)}
                                     <Text style={{ textAlign: 'center', marginLeft: 10 }}>Ida</Text>
 
 
