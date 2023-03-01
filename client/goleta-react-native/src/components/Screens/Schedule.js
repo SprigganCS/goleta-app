@@ -18,7 +18,7 @@ const Schedule = () => {
     let [response, setResponse] = useState(null);
 
     useEffect(() => {
-        fetch('https://goleta-app-production.up.railway.app/users')
+        fetch('https://goleta-app-production.up.railway.app/triptime')
             .then((res) => res.json())
             .then(
                 (result) => {
@@ -98,7 +98,7 @@ const Schedule = () => {
                             <View style={styles.hiddenContainer}>
                                 <View style={styles.lin}>
 
-                                    {/*{getTime(0)*/}
+                                    getTime(0)
                                     <Text style={{ textAlign: 'center', marginLeft: 10 }}>Ida</Text>
 
 

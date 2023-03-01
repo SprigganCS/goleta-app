@@ -55,7 +55,9 @@ app.get('/Users', (request, response) => {
 app.get('/TripTime', (request, response) => {
     const db = dbService.getDbServiceInstance();
 
-    const result = db.getTrip(request.body.weekDay);
+
+
+    const result = db.getTrip(request.query.weekDay); //ao inves de body usar query para pegar parametros da url
 
     result
     .then(data => response.json({data: data}))
