@@ -52,6 +52,16 @@ app.get('/Users', (request, response) => {
     .catch(err => console.log(err));
 });
 
+app.get('/TripTime', (request, response) => {
+    const db = dbService.getDbServiceInstance();
+
+    const result = db.getTrip(request.body.weekDay);
+
+    result
+    .then(data => response.json({data: data}))
+    .catch(err => console.log(err));
+});
+
 //update
 
 //delete

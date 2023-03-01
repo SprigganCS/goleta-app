@@ -66,6 +66,27 @@ class DbService { //criação de uma classe que cria uma instancia do banco de d
     }
   }
 
+  async getTrip(weekDay) { //seg ->1 sex ->5
+    try{
+      const response = await new Promise((resolve, reject) =>
+      {
+        const query = "SELECT ida_horario, volta_horario FROM tbl_horarios WHERE id_horario = ?;";
+
+        connection.query(query, [weekDay], (err, results) =>
+        {
+          if (err) reject(new Error(err.message));
+          resolve(results);
+        })
+      });
+
+      return response;
+
+    }catch (error) {
+      console.log(error);
+    }
+  }
+
+
 
   async insertNewPassenger(name){
     try{
