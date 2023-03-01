@@ -18,7 +18,7 @@ app.get('/', (request, response) => {
 //create
 app.post('/Register', (request, response) => {
     const db = dbService.getDbServiceInstance();
-    
+
     const result = db.insertNewPassenger(request.body.name);
 
     result
@@ -29,12 +29,16 @@ app.post('/Register', (request, response) => {
 app.post('/Schedule', (request, response) => {
     const db = dbService.getDbServiceInstance();
     
-    info = ["jao", 0];
-    const result = db.newSchedule(info);
-
-    result
-    .then(data => response.json({success: true})) //data retornado pelo insertNewPassenger e vira um objeto json que diz sucesso
-    .then(err => console.log(err));
+    db.getPassengerByName(request.body.name)
+        .then(id_passageiro => {
+            console.log(id_passageiro);
+            const result = db.newSchedule([id_passageiro, request.body.ida, request.body.volta, request.body.date_trip]);
+    
+            result
+            .then(data => response.json({success: true})) //data retornado pelo NewSchedule e vira um objeto json que diz sucesso
+            .then(err => console.log(err));
+        })
+        .catch(err => console.log(err));
 });
 
 //read

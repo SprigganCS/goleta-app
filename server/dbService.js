@@ -1,5 +1,6 @@
 const mysql = require('mysql2'); // mysql driver
 const dotenv = require('dotenv'); // Dotenv para variaveis de ambiente
+const { json } = require('express');
 dotenv.config(); //permite o acesso as credencias do .env
 let instance = null;
 
@@ -45,6 +46,27 @@ class DbService { //criação de uma classe que cria uma instancia do banco de d
     }
   }
 
+  async getPassengerByName(name) {
+    console.log(name);
+    try{
+      const response = await new Promise((resolve, reject) =>
+      {
+        const query = "SELECT id_passageiro FROM tbl_passageiros WHERE nome_passageiro = ?;";
+
+        connection.query(query, [name], (err, results) =>
+        {
+          if (err) reject(new Error(err.message));
+          resolve(results[0]);
+        })
+      });
+      
+      return JSON.stringify(response.id_passageiro);
+    }catch (error) {
+      console.log(error);
+    }
+  }
+
+
   async insertNewPassenger(name){
     try{
 
@@ -73,13 +95,17 @@ class DbService { //criação de uma classe que cria uma instancia do banco de d
   async newSchedule(info){
     try{
       const insertId = await new Promise((resolve, reject) => {
-        //a partir de info[0] buscar o id do passageiro na tbl_passageiros
-        const query = "INSERT INTO tbl_agendamento (id_passageiro, turno_agendamento, data_agendamento) VALUES (?, ?, ?);";
+        let date = new Date();
+        let datetime = date.getFullYear() + "-" + (date.getMonth()+1) + "-" + date.getDate() + " " + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
+        datetime = datetime.replace(/-/g, '/');
+        info[4] = datetime;
+
+        console.log(info);
+        const query = "INSERT INTO tbl_viagens (id_passageiro, ida_viagem, volta_viagem, data_viagem, data_agendamento_viagem) VALUES (?, ?, ?, ?, ?);";
 
         connection.query(query, info, (err, result) => {
           if (err) reject(new Error(err.message));
           resolve(result.insertId);
-
         });
 
       });
