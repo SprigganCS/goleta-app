@@ -2,6 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import { ActivityIndicator, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { useState, useEffect } from 'react';
 
+
 const Schedule = () => {
     const today = new Date();
     const day = today.getDay();
@@ -18,7 +19,7 @@ const Schedule = () => {
     let [response, setResponse] = useState(null);
 
     useEffect(() => {
-        fetch('https://goleta-app-production.up.railway.app/triptime')
+        fetch('goleta-app-production.up.railway.app/triptime?weekDay=1')
             .then((res) => res.json())
             .then(
                 (result) => {
@@ -33,16 +34,16 @@ const Schedule = () => {
             )
     }, []);
 
-    const getTime = (i) => {
+    const getTime = () => {
         if (isLoading) {
-            return <ActivityIndicator size="small" />;
+            return <ActivityIndicator size="small" />; 
         }
 
         if (error) {
             return <Text>{error}</Text>;
         }
-        console.log(response.data[i].nome_passageiro);
-        return <Text style={{ textAlign: 'center' }}>{response.data[i].nome_passageiro}</Text>;
+        //console.log(response);
+        return <Text style={{ textAlign: 'center' }}>aaaa</Text>;
     }
 
     return (
@@ -98,7 +99,13 @@ const Schedule = () => {
                             <View style={styles.hiddenContainer}>
                                 <View style={styles.lin}>
 
-                                    getTime(0)
+                                    {/*{getTime()} */}
+                                    {
+                                        fetch('https://goleta-app-production.up.railway.app/triptime?weekDay=1')
+                                        .then(response => response.json())
+                                        .then(data => ida = data.data[0].ida_horario, volta = data.data[0].volta_horario)
+                                        .catch(error => console.log(error))
+                                    }
                                     <Text style={{ textAlign: 'center', marginLeft: 10 }}>Ida</Text>
 
 

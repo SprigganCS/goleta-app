@@ -56,7 +56,7 @@ app.get('/TripTime', (request, response) => {
     const db = dbService.getDbServiceInstance();
 
 
-
+    console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaa");
     const result = db.getTrip(request.query.weekDay); //ao inves de body usar query para pegar parametros da url
 
     result
